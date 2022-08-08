@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "729997978982",
+    "project_id": "era-jaya-inventory",
+    "storage_bucket": "era-jaya-inventory.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:729997978982:android:9998beb48421cf6c34aca7",
+        "android_client_info": {
+          "package_name": "com.erajayainventory.era_jaya_inventory"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "729997978982-l8il6udhp7e1b89b18nt9bqb0v7huv5k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBBJfwFSE7b6cBxn0vhPbHwcafcDT9geNI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "729997978982-l8il6udhp7e1b89b18nt9bqb0v7huv5k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
