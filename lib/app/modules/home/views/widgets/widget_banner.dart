@@ -53,7 +53,7 @@ Widget WidgetBanner({total_barang, barang_masuk, barang_keluar}) {
                                       fontSize: 13, color: MyColors.greyText)),
                               SizedBox(height: 3),
                               Text(
-                                '100',
+                                total_barang,
                                 style: GoogleFonts.inter(
                                     fontSize: 17,
                                     fontWeight: FontWeight.w500,
@@ -71,7 +71,7 @@ Widget WidgetBanner({total_barang, barang_masuk, barang_keluar}) {
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: MyColors.greyText)),
                               SizedBox(height: 3),
-                              Text('100',
+                              Text(barang_masuk,
                                   style: GoogleFonts.inter(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,
@@ -84,11 +84,11 @@ Widget WidgetBanner({total_barang, barang_masuk, barang_keluar}) {
                           ),
                           Column(
                             children: [
-                              Text('Barang Keluar',
+                              Text("Barang Keluar",
                                   style: GoogleFonts.inter(
                                       fontSize: 13, color: MyColors.greyText)),
                               SizedBox(height: 3),
-                              Text('31',
+                              Text(barang_keluar,
                                   style: GoogleFonts.inter(
                                       fontSize: 17,
                                       fontWeight: FontWeight.w500,

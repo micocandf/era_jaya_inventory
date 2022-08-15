@@ -22,6 +22,6 @@ class ProductPageRakController extends GetxController {
   Stream<QuerySnapshot<Object?>> streammData() {
     CollectionReference productsByCategory =
         FirebaseFirestore.instance.collection('products');
-    return productsByCategory.where("kategori", isEqualTo: "rak").snapshots();
+    return productsByCategory.where("kategori", isEqualTo: "Rak").snapshots();
   }
 }

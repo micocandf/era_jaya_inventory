@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../global/colors_assets.dart';
-import '../../home/views/widgets/addItemPage/form_field.dart';
 import '../controllers/edit_product_controller.dart';
 
 class EditProductView extends GetView<EditProductController> {
@@ -36,9 +35,13 @@ class EditProductView extends GetView<EditProductController> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.done) {
               var data = snapshot.data!.data() as Map<String, dynamic>;
+              controller.kategoriName.value = data["kategori"];
+              controller.jenisBahan.value = data["jenis_bahan"];
+              controller.kondisi.value = data["kondisi"];
               controller.namaBarangC.text = data["nama_barang"];
               controller.kodeBarangC.text = data["kode_barang"];
-              controller.gambarC.text = data["gambar"];
+              controller.gambar.value = data["gambar"];
+              controller.quantityC.text = data["quantity"];
 
               return Padding(
                 padding: const EdgeInsets.all(20),
@@ -267,23 +270,57 @@ class EditProductView extends GetView<EditProductController> {
                       ),
                     ),
                     SizedBox(height: 13),
-                    SizedBox(
-                      height: 45,
-                      child: TextField(
-                        controller: controller.gambarC,
-                        autocorrect: false,
-                        textInputAction: TextInputAction.next,
-                        decoration: InputDecoration(
-                          icon: Icon(Icons.image),
-                          labelText: "Gambar",
-                          labelStyle: GoogleFonts.inter(
-                              fontSize: 14, fontWeight: FontWeight.w500),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
+                    DropdownButtonFormField2(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.image),                 
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),                  
+                ),
+                isExpanded: true,
+                hint: const Text(
+                  'Gambar',
+                  style: TextStyle(fontSize: 14),
+                ),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black45,
+                ),
+                iconSize: 30,
+                buttonHeight: 45,
+                buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+                dropdownDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                items: controller.gambarItems
+                    .map((item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
                           ),
-                        ),
-                      ),
-                    ),
+                        ))
+                    .toList(),
+                validator: (value) {
+                  if (value == null) {
+                    return 'Pilih Gambar.';
+                  }
+                },
+                onChanged: (value) {
+                  selectedValue = value as String?;
+                  controller.gambar.value = value!;
+                  //Do something when changing the item if you want.
+                },
+                onSaved: (value) {
+                  // selectedValue = value;
+                  selectedValue = value as String?;
+                  controller.gambar.value = value!;
+                },
+              ),
                     SizedBox(height: 20),
                     ElevatedButton(
                       style: ElevatedButton.styleFrom(
@@ -298,7 +335,7 @@ class EditProductView extends GetView<EditProductController> {
                             controller.namaBarangC.text,
                             controller.quantityC.text,
                             controller.kodeBarangC.text,
-                            controller.gambarC.text,
+                            controller.gambar.value,
                             Get.arguments);
                       },
                       child: Text(' Save '),

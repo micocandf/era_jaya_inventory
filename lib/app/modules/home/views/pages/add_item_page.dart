@@ -208,15 +208,62 @@ class addItemPage extends GetView<HomeController> {
               SizedBox(height: 13),
               formField(
                   icon: Icon(Icons.qr_code),
-                  name: "Kode Barang",
+                  name: "Kode Barang",                  
                   textInputAct: TextInputAction.next,
                   controller: controller.kodeBarangC),
               SizedBox(height: 13),
-              formField(
-                  icon: Icon(Icons.image),
-                  name: "Gambar",
-                  textInputAct: TextInputAction.done,
-                  controller: controller.gambarC),
+              
+               DropdownButtonFormField2(
+                decoration: InputDecoration(
+                  icon: Icon(Icons.image),                 
+                  isDense: true,
+                  contentPadding: EdgeInsets.zero,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                  ),                  
+                ),
+                isExpanded: true,
+                hint: const Text(
+                  'Gambar',
+                  style: TextStyle(fontSize: 14),
+                ),
+                icon: const Icon(
+                  Icons.arrow_drop_down,
+                  color: Colors.black45,
+                ),
+                iconSize: 30,
+                buttonHeight: 45,
+                buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+                dropdownDecoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                items: controller.gambarItems
+                    .map((item) => DropdownMenuItem<String>(
+                          value: item,
+                          child: Text(
+                            item,
+                            style: const TextStyle(
+                              fontSize: 14,
+                            ),
+                          ),
+                        ))
+                    .toList(),
+                validator: (value) {
+                  if (value == null) {
+                    return 'Pilih Gambar.';
+                  }
+                },
+                onChanged: (value) {
+                  selectedValue = value as String?;
+                  controller.gambar.value = value!;
+                  //Do something when changing the item if you want.
+                },
+                onSaved: (value) {
+                  // selectedValue = value;
+                  selectedValue = value as String?;
+                  controller.gambar.value = value!;
+                },
+              ),
               SizedBox(height: 20),
               ElevatedButton(
                 style: ElevatedButton.styleFrom(
@@ -231,7 +278,7 @@ class addItemPage extends GetView<HomeController> {
                       controller.namaBarangC.text,
                       controller.quantityC.text,
                       controller.kodeBarangC.text,                      
-                      controller.gambarC.text);
+                      controller.gambar.value);
                 },
                 child: Text(' Save '),
               )

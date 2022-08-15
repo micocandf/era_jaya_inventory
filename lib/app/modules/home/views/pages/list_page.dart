@@ -96,7 +96,7 @@ class listPage extends GetView<HomeController> {
             SizedBox(height: 15),
             GestureDetector(
               onTap: () {
-                Get.toNamed(Routes.GET_LAPORAN_PAGE);
+                controller.getPDF();
               },
               child: cardGetLapWidget(
                   color: MyColors.cardPurple,

@@ -19,8 +19,24 @@ class homePage extends GetView<HomeController> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            WidgetBanner(
-                total_barang: "10", barang_masuk: "10", barang_keluar: "10"),
+             StreamBuilder<QuerySnapshot<Object?>>(
+                  stream: controller.streamData(),
+                  builder: (context, snapshot) {
+                    if (snapshot.hasData) {
+                      var listDocs = snapshot.data!.docs;
+                      return WidgetBanner(
+                total_barang: "${snapshot.data!.docs.length}", barang_masuk: "${snapshot.data!.docs.length}", barang_keluar: "0");
+                      // cardWidget(
+                      //   color: MyColors.mainColor,
+                      //   number: "${snapshot.data!.docs.length}",
+                      //   name: "Total Barang",
+                      // );
+                    } else {
+                      return Text("");
+                    }
+                  },
+                ),
+            
             SizedBox(height: 30),
             Padding(
               padding: const EdgeInsets.only(left: 30, right: 30),

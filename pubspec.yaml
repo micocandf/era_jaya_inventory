@@ -16,9 +16,9 @@ dependencies:
   dropdown_button2: ^1.6.3
   intl: ^0.17.0
   pdf: ^3.8.1
+  path_provider: ^2.0.11
   datetime_picker_formfield: ^2.0.0
-  # dropdown_search: ^5.0.2  
-  # flutter_native_splash: ^2.2.4
+  open_file: 3.2.1
   flutter: 
     sdk: flutter
 
@@ -30,5 +30,6 @@ dev_dependencies:
 flutter: 
   uses-material-design: true
 
-splash_screen_view:
-  color: "#ffffff"
+splash_screen_view: 
+  color: '#ffffff'
+

@@ -19,13 +19,11 @@ class ProductPageKasurController extends GetxController {
   void onClose() {}
   void increment() => count.value++;
 
-  streamData() {}
-
-  
-}Stream<QuerySnapshot<Object?>> streamData() {
+  Stream<QuerySnapshot<Object?>> streamData() {
     CollectionReference productsByCategory =
         FirebaseFirestore.instance.collection('products');
     // return productsByCategory.where("kategori", isEqualTo: "Kasur").snapshots();
-    return productsByCategory.orderBy("tanggal_masuk", descending: true).snapshots();
-  }
+    return productsByCategory.where("kategori", isEqualTo: "Kasur").snapshots();
+  } 
+}
   

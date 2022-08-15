@@ -9,6 +9,7 @@ class EditProductController extends GetxController {
   var kategoriName = ''.obs;
   var jenisBahan = ''.obs;
   var kondisi = ''.obs;
+  var gambar = ''.obs;
 
   final List<String> kategoriItems = [
     'Lemari',
@@ -31,6 +32,15 @@ class EditProductController extends GetxController {
     'Retur',
   ];
 
+    final List<String> gambarItems = [
+    'Lemari',
+    'Kursi',
+    'Meja',
+    'Kasur',
+    'Rak',
+    'Buffet'
+  ];
+
   late TextEditingController namaBarangC;
   late TextEditingController merkC;
   late TextEditingController kodeBarangC;
@@ -44,7 +54,7 @@ class EditProductController extends GetxController {
     kondisi;
     namaBarangC = TextEditingController();
     quantityC = TextEditingController();
-    gambarC = TextEditingController();
+    gambar;
     kodeBarangC = TextEditingController();
     super.onInit();
   }
@@ -57,7 +67,7 @@ class EditProductController extends GetxController {
     namaBarangC.dispose();
     quantityC.dispose();
     kodeBarangC.dispose();
-    gambarC.dispose();
+    gambar;
 
     super.onClose();
   }
@@ -86,8 +96,9 @@ class EditProductController extends GetxController {
           'jenis_bahan': jenisBahan,
           'kondisi': kondisi,
           'nama_barang': namaBarang,
+          'quantity': quantity,
           'kode_barang': kodeBarang,
-          'gambar': gambar,
+          'gambar': gambar == 'Lemari' ? 'https://prodesign.id/images/products/large/lemari-pakaian-1-pintu-geser-dan-pintu-cermin-texas-4_1.png' : gambar == 'Kursi' ? 'https://padiumkm.id/public/products/27911/622794/kursi-kantor.1650509882.png' : gambar == 'Meja' ? 'https://img.my-best.id/press_component/images/53776d2c911ac39f8da59fdfc8779b63.jpg?ixlib=rails-4.2.0&q=70&lossless=0&w=690&fit=max' : gambar == 'Kasur' ? 'https://informa.co.id/files/uploads/inspirationarticle/2022/MAY/IS_collagen.jpg' : gambar == 'Rak' ? 'https://dynamic.zacdn.com/c0hC1OzzFHRo580oCEhVr8w3cfg=/fit-in/346x500/filters:quality(90):fill(ffffff)/https://static-id.zacdn.com/p/juliahie-3299-0489392-1.jpg' : gambar == 'Buffet' ? 'https://www.static-src.com/wcsstore/Indraprastha/images/catalog/full/super_super-511-sliding-buffet-tv---oak_full02.jpg' : '',
           'tanggal_masuk': dateNow,
         },
       );
@@ -102,7 +113,7 @@ class EditProductController extends GetxController {
           namaBarangC.clear();
           quantityC.clear();
           kodeBarangC.clear();
-          gambarC.clear();
+          gambar;
           Get.back();
           Get.back();
           Get.back();

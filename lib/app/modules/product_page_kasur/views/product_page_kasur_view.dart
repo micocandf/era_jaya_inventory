@@ -37,37 +37,32 @@ class ProductPageKasurView extends GetView<ProductPageKasurController> {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.active) {
             var listAllDocs = snapshot.data!.docs;
+            
             return GridView.builder(
-              // physics: NeverScrollableScrollPhysics(),
-              // scrollDirection: Axis.vertical,
+              physics: NeverScrollableScrollPhysics(),
+              scrollDirection: Axis.vertical,
               itemCount: listAllDocs.length,
               itemBuilder: (context, index) {
-                if ((listAllDocs[index].data()
-                        as Map<String, dynamic>)['kategori'] ==
-                    'Kasur') {
-                  return GestureDetector(
-                    onTap: () {
-                      Get.toNamed(
-                        Routes.DETAILS_PRODUCT,
-                        arguments: listAllDocs[index].id,
-                      );
-                    },
-                    child: productItem(
-                      image:
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)['gambar']}",
-                      name:
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)['nama_barang']}",
-                      dateOne:
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)['tanggal_masuk']}",
-                      dateTwo:
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)['tanggal_keluar']}",
-                      itemCount:
-                          "${(listAllDocs[index].data() as Map<String, dynamic>)['quantity']}",
-                    ),
-                  );
-                } else {
-                  return Container();
-                }
+                return GestureDetector(
+                  onTap: () {
+                    Get.toNamed(
+                      Routes.DETAILS_PRODUCT,
+                      arguments: listAllDocs[index].id,
+                    );
+                  },
+                  child: productItem(
+                    image:
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)['gambar']}",
+                    name:
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)['nama_barang']}",
+                    dateOne:
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)['tanggal_masuk']}",
+                    dateTwo:
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)['tanggal_keluar']}",
+                    itemCount:
+                        "${(listAllDocs[index].data() as Map<String, dynamic>)['quantity']}",
+                  ),
+                );
               },
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
